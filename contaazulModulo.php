@@ -18,7 +18,7 @@ class contaazulModulo
     { 
         $this->client_id = '6dq4uiWVUey2HoklHHpwqpuh4O5cgJRB';
         $this->client_secret = 'Z2jcgOrW47w90rpGbM0GLy4vzmoWA4Nm';
-        $this->redirect_uri = 'https://cleverweb.com.br/projetos/conta-azul';
+        $this->redirect_uri = 'https://cleverweb.com.br/projetos/contaazul';
         $this->auth_endpoint = 'https://api.contaazul.com/auth/authorize';
         $this->scope = "Sale";
         $this->state = $this->random(16);
@@ -86,7 +86,7 @@ class contaazulModulo
     public function initialToken($code)
     {      
       //var_dump($params);
-      $redirect_uri = $this->redirect_uri;
+      $redirect_uri = urlencode($this->redirect_uri);
       $params = ['code'=>$code, 'grant_type'=>'authorization_code', 'redirect_uri'=>$redirect_uri];
       //$params2 = "?grant_type=authorization_code&redirect_uri={$redirect_uri}&code={$code}";
       return $this->requestServerPost($params, 'https://api.contaazul.com/oauth2/token');
